@@ -17,36 +17,36 @@ import java.util.Collection;
 public abstract class AbstractController <DTO> {
 
     @Autowired
-    private ServiceDTO<DTO> service;
+    private ServiceDTO<DTO> serviceDTO;
 
 
     @DeleteMapping("/delete")
     public void delete(@RequestParam("id") Long id) {
-        service.delete(id);
+        serviceDTO.delete(id);
     }
 
 
     @PutMapping("/update")
     public DTO update(@RequestBody DTO dto) {
-        service.update(dto);
+        serviceDTO.update(dto);
         return dto;
     }
 
     @PostMapping("/insert")
     public DTO insert(@RequestBody DTO dto) {
-        service.insert(dto);
+        serviceDTO.insert(dto);
         return dto;
     }
 
     @GetMapping("/read")
     public DTO read(@RequestParam("id") Long id) {
-        return service.read(id);
+        return serviceDTO.read(id);
     }
 
 
     @GetMapping("/readAll")
     public Collection<DTO>  readAll() {
-        return service.readAll();
+        return serviceDTO.readAll();
     }
 
 }
