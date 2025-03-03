@@ -1,6 +1,6 @@
 package it.aesse.AESSE.controller;
 
-import it.corsospring.farmacia.service.ServiceDTO;
+import it.aesse.AESSE.service.ServiceDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
