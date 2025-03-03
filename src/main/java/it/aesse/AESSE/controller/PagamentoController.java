@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/Pagamento")
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http//localhost:8080")
 public class PagamentoController extends AbstractController<PagamentoDto> {
     @Autowired
     private PagamentoService pagamentoService;
