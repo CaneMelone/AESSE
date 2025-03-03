@@ -1,4 +1,7 @@
 package it.aesse.AESSE.repository;
 
-public interface ReclamoRepository {
+import it.aesse.AESSE.model.Reclamo;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ReclamoRepository extends JpaRepository<Reclamo,Long> {
 }

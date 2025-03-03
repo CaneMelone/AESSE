@@ -1,4 +1,7 @@
 package it.aesse.AESSE.repository;
 
-public interface PolizzaRepository {
+import it.aesse.AESSE.model.Polizza;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PolizzaRepository extends JpaRepository<Polizza,Long> {
 }
