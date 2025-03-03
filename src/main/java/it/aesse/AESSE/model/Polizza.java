@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -21,25 +23,14 @@ public class Polizza {
         private int premio;
         private String stato;
 
-        /*
-        id_polizza PK
-        data_inizio
-        data_scadenza
-        tipo
-        importo_rata
-        premio
-        stato
-        id_cliente FK
-        id_bene FK
-        */
 
 
         @ManyToOne
         @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
-        private List<Clienti> cliente;
+        private List<Cliente> cliente;
 
         @ManyToOne
         @JoinColumn(name = "id_bene", referencedColumnName = "id_bene")
-        private List<Beni> bene;
+        private List<Bene> bene;
 
 }
