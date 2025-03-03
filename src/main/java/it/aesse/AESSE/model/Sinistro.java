@@ -20,12 +20,12 @@ public class Sinistro {
     @Column(name = "id_sinistro")
     private Long idSinistro;
 
-    @ManyToOne
-    @JoinColumn(name = "id_polizza", referencedColumnName = "id_polizza")
-    private Polizza polizza;
+//    @ManyToOne
+//    @JoinColumn(name = "id_polizza", referencedColumnName = "id_polizza")
+//    private Polizza polizza;
 
-//    @Column(name = "id_polizza")
-//    private Long idPolizza;
+    @Column(name = "id_polizza")
+    private Long idPolizza;
 
     @Column(name = "data")
     private LocalDate data;
