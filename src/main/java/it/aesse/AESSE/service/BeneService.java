@@ -1,4 +1,4 @@
 package it.aesse.AESSE.service;
 
-public class BeneService {
+public class BeneService extends AbstractService {
 }

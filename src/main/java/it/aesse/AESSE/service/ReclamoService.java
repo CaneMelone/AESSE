@@ -1,4 +1,4 @@
 package it.aesse.AESSE.service;
 
-public class ReclamoService {
+public class ReclamoService extends AbstractService {
 }

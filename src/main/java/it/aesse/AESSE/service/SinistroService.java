@@ -1,4 +1,4 @@
 package it.aesse.AESSE.service;
 
-public class SinistroService {
+public class SinistroService extends AbstractService {
 }

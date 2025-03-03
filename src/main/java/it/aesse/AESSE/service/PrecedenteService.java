@@ -1,4 +1,4 @@
 package it.aesse.AESSE.service;
 
-public class PrecedenteService {
+public class PrecedenteService extends AbstractService {
 }
