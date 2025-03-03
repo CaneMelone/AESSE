@@ -7,7 +7,7 @@ package it.aesse.AESSE.controller;
 
     @RestController
     @RequestMapping("/Bene")
-    @CrossOrigin(origins = "http//localhost:8080")
+    @CrossOrigin(origins = "http://localhost:8080")
     public class BeneController extends AbstractController<BeneDto> {
         @Autowired
         private BeneService beneService;

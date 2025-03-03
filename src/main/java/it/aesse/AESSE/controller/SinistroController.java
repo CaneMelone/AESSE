@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/Reclamo")
+@RequestMapping("/Sinistro")
 @CrossOrigin(origins = "http//localhost:8080")
 public class SinistroController extends AbstractController<BeneDto> {
     @Autowired
