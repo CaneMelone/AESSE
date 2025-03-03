@@ -21,8 +21,7 @@ public class Sinistro {
     @Column(name = "id_sinistro")
     private Long id_sinistro;
 
-    @ManyToOne
-    @JoinColumn(name = "id_polizza", referencedColumnName = "id_polizza")
+    @Column(name = "id_polizza")
     private Polizza polizza;
 
     @Column(name = "data")

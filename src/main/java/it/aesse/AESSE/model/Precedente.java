@@ -1,15 +1,31 @@
 package it.aesse.AESSE.model;
 
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Precedente {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_precedente")
     private Long id_precedente;
-    private String tipo;
-    private String pena;
-    private boolean scontata;
 
-    @ManyToOne
-    @JoinColumn(name = "id_cliente")
+    @Column(name = "tipo")
+    private String tipo;
+
+    @Column(name = "pena")
+    private String pena;
+
+    @Column(name = "scontata")
+    private Boolean scontata;
+
+    @Column(name = "id_cliente")
     private Cliente cliente;
 }

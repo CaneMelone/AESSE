@@ -21,11 +21,6 @@ public class Pagamento {
     @Column(name = "id_pagamento")
     private Long id_pagamento;
 
-    @ManyToOne
-    @JoinColumn(name = "id_polizza", referencedColumnName = "id_polizza")
-    private Polizza polizza;
-
-
     @Column(name = "data_pagamento")
     private LocalDate data_agamento;
 
@@ -37,4 +32,7 @@ public class Pagamento {
 
     @Column(name = "causale", length = 100)
     private String causale;
+
+    @Column(name = "id_polizza")
+    private Polizza polizza;
 }
