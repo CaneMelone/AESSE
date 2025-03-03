@@ -1,6 +1,6 @@
 package it.aesse.AESSE.converter;
 
-    import it.aesse.AESSE.converter.AbstractConverter;
+
     import it.aesse.AESSE.dto.SinistroDto;
     import it.aesse.AESSE.model.Sinistro;
     import org.modelmapper.ModelMapper;

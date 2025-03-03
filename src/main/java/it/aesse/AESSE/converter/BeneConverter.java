@@ -1,6 +1,6 @@
 package it.aesse.AESSE.converter;
 
-    import it.aesse.AESSE.converter.AbstractConverter;
+
     import it.aesse.AESSE.dto.BeneDto;
     import it.aesse.AESSE.model.Bene;
     import org.modelmapper.ModelMapper;

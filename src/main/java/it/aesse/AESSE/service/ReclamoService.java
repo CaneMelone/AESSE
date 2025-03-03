@@ -4,17 +4,12 @@ package it.aesse.AESSE.service;
                  import it.aesse.AESSE.dto.ReclamoDto;
                  import it.aesse.AESSE.model.Reclamo;
                  import it.aesse.AESSE.repository.ReclamoRepository;
-                 import jakarta.persistence.EntityNotFoundException;
                  import lombok.extern.slf4j.Slf4j;
                  import org.springframework.beans.factory.annotation.Autowired;
-                 import org.springframework.cache.annotation.CacheEvict;
-                 import org.springframework.cache.annotation.Cacheable;
-                 import org.springframework.data.domain.Pageable;
                  import org.springframework.stereotype.Service;
 
                  import java.util.List;
-                 import java.util.Optional;
-                 import java.util.stream.Collectors;
+
 
                  @Slf4j
                  @Service

@@ -1,6 +1,6 @@
 package it.aesse.AESSE.converter;
 
-import it.aesse.AESSE.converter.AbstractConverter;
+
 import it.aesse.AESSE.dto.PolizzaDto;
 import it.aesse.AESSE.model.Polizza;
 import org.modelmapper.ModelMapper;

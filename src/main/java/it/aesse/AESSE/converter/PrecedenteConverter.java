@@ -1,6 +1,6 @@
 package it.aesse.AESSE.converter;
 
-import it.aesse.AESSE.converter.AbstractConverter;
+
 import it.aesse.AESSE.dto.PrecedenteDto;
 import it.aesse.AESSE.model.Precedente;
 import org.modelmapper.ModelMapper;
