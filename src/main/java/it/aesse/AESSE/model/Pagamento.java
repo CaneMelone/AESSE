@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -18,17 +19,15 @@ public class Pagamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pagamento")
-    private Long idPagamento;
+    private Long id_pagamento;
 
-//    @ManyToOne
-//    @JoinColumn(name = "id_polizza", referencedColumnName = "id_polizza")
-//    private Polizza polizza;
+    @ManyToOne
+    @JoinColumn(name = "id_polizza", referencedColumnName = "id_polizza")
+    private Polizza polizza;
 
-    @Column(name = "id_polizza")
-    private Long idPolizza;
 
     @Column(name = "data_pagamento")
-    private LocalDate dataPagamento;
+    private LocalDate data_agamento;
 
     @Column(name = "importo", precision = 10, scale = 2)
     private BigDecimal importo;
