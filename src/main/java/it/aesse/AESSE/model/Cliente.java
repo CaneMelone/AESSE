@@ -1,9 +1,6 @@
 package it.aesse.AESSE.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,13 +16,30 @@ import java.time.LocalDate;
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name  = "id_cliente")
     private Long id_cliente;
+
+    @Column(name = "nome");
     private String nome;
+
+    @Column(name = "cognome");
     private String cognome;
+
+    @Column(name = "data_nascita");
     private LocalDate data_nascita;
+
+    @Column(name = "indirizzo");
     private String indirizzo;
+
+    @Column(name = "telefono");
     private String telefono;
+
+    @Column(name = "email");
     private String email;
+
+    @Column(name = "codice_fiscale");
     private String codice_fiscale;
+
+    @Column(name = "bersani");
     private Boolean bersani;
 }
