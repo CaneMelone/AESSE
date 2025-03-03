@@ -1,8 +1,10 @@
 package it.aesse.AESSE.service;
 
+import org.springframework.stereotype.Service;
+
 import java.util.Collection;
 import java.util.List;
-
+@Service
 public interface ServiceDTO<DTO> {
 
     public List<DTO> getAll();
