@@ -1,4 +1,4 @@
-package model;
+package it.aesse.AESSE.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

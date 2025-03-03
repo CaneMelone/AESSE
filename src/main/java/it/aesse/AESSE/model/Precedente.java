@@ -1,4 +1,4 @@
-package model;
+package it.aesse.AESSE.model;
 
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
