@@ -16,30 +16,32 @@ public class Polizza {
         @Column(name = "id_polizza")
         private Integer id_polizza;
 
-        @Column(name = "data_inizio");
+        @Column(name = "data_inizio")
         private String data_inizio;
 
-        @Column(name = "data_scadenza");
+        @Column(name = "data_scadenza")
         private String data_scadenza;
 
-        @Column(name = "tipo");
+        @Column(name = "tipo")
         private String tipo;
 
-        @Column(name = "importo_rata");
+        @Column(name = "importo_rata")
         private int importo_rata;
 
-        @Column(name = "importo");
+        @Column(name = "importo")
         private int importo;
 
-        @Column(name = "premio");
+        @Column(name = "premio")
         private int premio;
 
-        @Column(name = "stato");
+        @Column(name = "stato")
         private String stato;
 
-        @Column(name = "id_cliente")
+        @ManyToOne
+        @JoinColumn(name = "id_cliente")
         private Cliente cliente;
 
-        @Column(name = "id_bene")
+        @ManyToOne
+        @JoinColumn(name = "id_bene")
         private Bene bene;
 }
