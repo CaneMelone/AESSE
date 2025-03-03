@@ -61,7 +61,7 @@ INSERT INTO Sinistro (id_sinistro, id_polizza, data, descrizione, stato, valore_
 (4, 7, '2023-06-15', 'Danneggiamento moto', 'Chiuso', 700, 400);
 
 -- Inserimento reclami (alcune polizze hanno reclamo)
-INSERT INTO Seclamo (id_reclamo, id_polizza, data, motivo, stato) VALUES
+INSERT INTO Reclamo (id_reclamo, id_polizza, data, motivo, stato) VALUES
 (1, 1, '2023-02-05', 'Ritardo nella liquidazione', 'In corso'),
 (2, 3, '2022-07-15', 'Danno ingiustificato', 'Accettato'),
 (3, 5, '2023-05-10', 'Richiesta indennizzo non riconosciuta', 'Respinto'),
