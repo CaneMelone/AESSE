@@ -29,5 +29,5 @@ public class Reclamo {
     private String stato;
 
     @Column(name = "id_polizza")
-    private Polizza polizza;
+    private Long id_polizza;
 }

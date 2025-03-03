@@ -34,5 +34,5 @@ public class Pagamento {
     private String causale;
 
     @Column(name = "id_polizza")
-    private Polizza polizza;
+    private Long id_polizza;
 }

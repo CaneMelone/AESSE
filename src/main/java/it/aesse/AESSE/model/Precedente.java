@@ -27,5 +27,5 @@ public class Precedente {
     private Boolean scontata;
 
     @Column(name = "id_cliente")
-    private Cliente cliente;
+    private Long id_cliente;
 }
