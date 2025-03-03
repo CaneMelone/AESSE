@@ -1,16 +1,10 @@
 package it.aesse.AESSE.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 public class ReclamoDto {
     private Long id_reclamo;
     private LocalDate data;

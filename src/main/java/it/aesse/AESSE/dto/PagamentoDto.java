@@ -1,15 +1,9 @@
 package it.aesse.AESSE.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class Pagamento {
+@Data
+public class PagamentoDto {
     private Long id_pagamento;
     private String data;
     private double importo;
