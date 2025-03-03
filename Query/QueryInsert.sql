@@ -1,5 +1,5 @@
 -- Inserimento clienti
-INSERT INTO cliente (id_cliente, nome, cognome, data_nascita, indirizzo, telefono, email, codice_fiscale, bersani) VALUES
+INSERT INTO Cliente (id_cliente, nome, cognome, data_nascita, indirizzo, telefono, email, codice_fiscale, bersani) VALUES
 (1, 'Mario', 'Rossi', '1980-01-15', 'Via Roma 1, Milano', '0212345678', 'mario.rossi@example.com', 'RSSMRA80A01F205X', false),
 (2, 'Luigi', 'Verdi', '1975-05-20', 'Via Verdi 10, Torino', '0119876543', 'luigi.verdi@example.com', 'VRDLGU75E20T089K', false),
 (3, 'Anna', 'Bianchi', '1990-03-12', 'Corso Italia 5, Napoli', '0812345678', 'anna.bianchi@example.com', 'BNCHNN90C12F839L', true),
@@ -12,7 +12,7 @@ INSERT INTO cliente (id_cliente, nome, cognome, data_nascita, indirizzo, telefon
 (10, 'Francesca', 'Greco', '1990-10-10', 'Corso Vittorio 7, Verona', '0456781234', 'francesca.greco@example.com', 'GRCFNC90R10L736Y', true);
 
 -- Inserimento beni (asset di vario tipo)
-INSERT INTO bene (id_bene, tipo, identificativo, descrizione) VALUES
+INSERT INTO Bene (id_bene, tipo, identificativo, descrizione) VALUES
 (1, 'Auto', 'AB123CD', 'Fiat Panda 2010'),
 (2, 'Casa', 'Casa001', 'Appartamento in centro'),
 (3, 'Moto', 'MOTO99', 'Yamaha MT-07'),
@@ -24,7 +24,7 @@ INSERT INTO bene (id_bene, tipo, identificativo, descrizione) VALUES
 
 -- Inserimento polizze
 -- Nota: importo_rata = importo - premio
-INSERT INTO polizza (id_polizza, data_inizio, data_scadenza, tipo, importo_rata, importo, premio, stato, id_cliente, id_bene) VALUES
+INSERT INTO Polizza (id_polizza, data_inizio, data_scadenza, tipo, importo_rata, importo, premio, stato, id_cliente, id_bene) VALUES
 (1, '2023-01-01', '2024-01-01', 'RC Auto', 500, 1500, 1000, 'Attiva', 1, 1),
 (2, '2023-02-15', '2024-02-15', 'Polizza Casa', 300, 1300, 1000, 'Attiva', 2, 2),
 (3, '2022-06-01', '2023-06-01', 'RC Moto', 200, 700, 500, 'Scaduta', 3, 3),
@@ -39,7 +39,7 @@ INSERT INTO polizza (id_polizza, data_inizio, data_scadenza, tipo, importo_rata,
 (12, '2023-10-01', '2024-10-01', 'RC Auto', 600, 1600, 1000, 'Attiva', 2, 5);
 
 -- Inserimento pagamenti (almeno uno per ogni polizza)
-INSERT INTO pagamento (id_pagamento, id_polizza, data_pagamento, importo, metodo, causale) VALUES
+INSERT INTO Pagamento (id_pagamento, id_polizza, data_pagamento, importo, metodo, causale) VALUES
 (1, 1, '2023-01-05', 500, 'Bonifico', 'Prima rata'),
 (2, 2, '2023-02-20', 300, 'Carta di Credito', 'Prima rata'),
 (3, 3, '2022-06-05', 200, 'Bonifico', 'Prima rata'),
@@ -54,21 +54,21 @@ INSERT INTO pagamento (id_pagamento, id_polizza, data_pagamento, importo, metodo
 (12, 12, '2023-10-05', 600, 'Bonifico', 'Prima rata');
 
 -- Inserimento sinistri (alcune polizze hanno sinistro)
-INSERT INTO sinistro (id_sinistro, id_polizza, data, descrizione, stato, valore_danno, importo_concesso) VALUES
+INSERT INTO Sinistro (id_sinistro, id_polizza, data, descrizione, stato, valore_danno, importo_concesso) VALUES
 (1, 1, '2023-02-01', 'Incidente minore', 'Aperto', 1200, 800),
 (2, 3, '2022-07-10', 'Caduta dalla moto', 'Chiuso', 800, 500),
 (3, 5, '2023-05-05', 'Furto auto', 'Aperto', 2000, 1500),
 (4, 7, '2023-06-15', 'Danneggiamento moto', 'Chiuso', 700, 400);
 
 -- Inserimento reclami (alcune polizze hanno reclamo)
-INSERT INTO reclamo (id_reclamo, id_polizza, data, motivo, stato) VALUES
+INSERT INTO Seclamo (id_reclamo, id_polizza, data, motivo, stato) VALUES
 (1, 1, '2023-02-05', 'Ritardo nella liquidazione', 'In corso'),
 (2, 3, '2022-07-15', 'Danno ingiustificato', 'Accettato'),
 (3, 5, '2023-05-10', 'Richiesta indennizzo non riconosciuta', 'Respinto'),
 (4, 7, '2023-06-20', 'Errore di valutazione', 'In corso');
 
 -- Inserimento precedenti (solo per alcuni clienti)
-INSERT INTO precedente (id_precedente, id_cliente, tipo, pena, scontata) VALUES
+INSERT INTO Precedente (id_precedente, id_cliente, tipo, pena, scontata) VALUES
 (1, 1, 'Violazione', 'Multe', false),
 (2, 4, 'Infrazione', 'Sospensione', true),
 (3, 9, 'Furto', 'Detenzione', false);
