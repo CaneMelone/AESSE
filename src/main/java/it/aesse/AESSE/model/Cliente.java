@@ -19,27 +19,27 @@ public class Cliente {
     @Column(name  = "id_cliente")
     private Long id_cliente;
 
-    @Column(name = "nome");
+    @Column(name = "nome")
     private String nome;
 
-    @Column(name = "cognome");
+    @Column(name = "cognome")
     private String cognome;
 
-    @Column(name = "data_nascita");
+    @Column(name = "data_nascita")
     private LocalDate data_nascita;
 
-    @Column(name = "indirizzo");
+    @Column(name = "indirizzo")
     private String indirizzo;
 
-    @Column(name = "telefono");
+    @Column(name = "telefono")
     private String telefono;
 
-    @Column(name = "email");
+    @Column(name = "email")
     private String email;
 
-    @Column(name = "codice_fiscale");
+    @Column(name = "codice_fiscale")
     private String codice_fiscale;
 
-    @Column(name = "bersani");
+    @Column(name = "bersani")
     private Boolean bersani;
 }

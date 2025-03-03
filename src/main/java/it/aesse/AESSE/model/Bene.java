@@ -17,12 +17,12 @@ public class Bene {
     @Column(name = "id_bene")
     private Long id_bene;
 
-    @Column(name = "tipo");
+    @Column(name = "tipo")
     private String tipo;
 
-    @Column(name = "identificativo");
+    @Column(name = "identificativo")
     private String identificativo;
 
-    @Column(name = "descrizione");
+    @Column(name = "descrizione")
     private String descrizione;
 }
