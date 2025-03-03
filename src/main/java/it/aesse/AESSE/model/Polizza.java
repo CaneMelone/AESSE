@@ -38,10 +38,10 @@ public class Polizza {
         private String stato;
 
         @ManyToOne
-        @JoinColumn(name = "id_cliente")
+        @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
         private Cliente cliente;
 
         @ManyToOne
-        @JoinColumn(name = "id_bene")
+        @JoinColumn(name = "id_bene", referencedColumnName = "id_bene")
         private Bene bene;
 }
