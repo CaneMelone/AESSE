@@ -16,6 +16,6 @@ public class PolizzaDto {
     private BigDecimal importo;
     private BigDecimal premio;
     private String stato;
-    private Long id_cliente;
-    private Long id_bene;
+    private ClienteDto cliente;
+    private BeneDto bene;
 }

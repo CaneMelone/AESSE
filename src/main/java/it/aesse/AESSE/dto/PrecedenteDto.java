@@ -7,7 +7,6 @@ public class PrecedenteDto {
     private Long id_precedente;
     private String tipo;
     private String pena;
-    private boolean scontata;
-    private Long id_cliente;
-
+    private Boolean scontata;
+    private ClienteDto cliente;
 }

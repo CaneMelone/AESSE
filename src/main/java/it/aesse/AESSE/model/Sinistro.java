@@ -20,9 +20,6 @@ public class Sinistro {
     @Column(name = "id_sinistro")
     private Long id_sinistro;
 
-    @Column(name = "id_polizza")
-    private Long idPolizza;
-
     @Column(name = "data")
     private LocalDate data;
 
@@ -37,4 +34,7 @@ public class Sinistro {
 
     @Column(name = "importo_concesso", precision = 10, scale = 2)
     private BigDecimal importoConcesso;
+
+    @JoinColumn(name = "id_polizza", referencedColumnName = "id_polizza")
+    private Polizza polizza;
 }

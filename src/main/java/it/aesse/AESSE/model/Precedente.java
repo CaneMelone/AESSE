@@ -27,6 +27,6 @@ public class Precedente {
     @Column(name = "scontata")
     private Boolean scontata;
 
-    @Column(name = "id_cliente")
-    private Long id_cliente;
+    @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
+    private Cliente cliente;
 }

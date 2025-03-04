@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 @Data
 public class ClienteDto {
-    private Long id_cliente;
+    private Long id;
     private String nome;
     private String cognome;
     private LocalDate data_nascita;
