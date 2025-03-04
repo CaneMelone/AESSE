@@ -21,7 +21,7 @@ public class ClienteService extends AbstractService<Cliente, ClienteDto>{
     @Autowired
     ClienteRepository clienteRepository;
 
-    /*public boolean hasPolizzeAttve(Long idCliente) {
+    public boolean hasPolizzeAttve(Long idCliente) {
         List<Polizza> polizze = polizzaRepository.findByClienteId(idCliente);
         return polizze.stream().anyMatch(polizza -> "Attiva".equalsIgnoreCase(polizza.getStato()));
     }
@@ -30,13 +30,12 @@ public class ClienteService extends AbstractService<Cliente, ClienteDto>{
         List<Cliente> clienti = clienteRepository.findAll();
 
         return clienti.stream()
-                .filter(cliente -> hasPolizzeAttve(cliente.getIdCliente()))
+                .filter(cliente -> hasPolizzeAttve(cliente.getId()))
                 .map(cliente -> Map.of(
                         "nome", cliente.getNome() + " " + cliente.getCognome(),
                         "telefono", cliente.getTelefono(),
                         "email", cliente.getEmail()
                 ))
                 .collect(Collectors.toList());
-    }*/
-
+    }
 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/Polizza")
-@CrossOrigin(origins = "http//localhost:8080")
+@CrossOrigin(origins = "http://localhost:4200")
 public class PolizzaController extends AbstractController<PolizzaDto> {
     @Autowired
     private PolizzaService polizzaService;
