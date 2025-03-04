@@ -9,8 +9,11 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ReflectionUtils;
 
+import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -85,6 +88,24 @@ public abstract class AbstractService<Entity, DTO> implements ServiceDTO<DTO> {
                 .stream()
                 .map(converter::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    public DTO patch(Long id, Map<String, Object> changes) {
+        log.info("PATCH dell'elemento con ID: {}, changes: {}", id, changes);
+        Entity entity = jpaRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Elemento con ID " + id + " non trovato"));
+
+        changes.forEach((fieldName, fieldValue) -> {
+            Field field = ReflectionUtils.findField(entity.getClass(), fieldName);
+            if (field != null) {
+                field.setAccessible(true);
+                ReflectionUtils.setField(field, entity, fieldValue);
+            } else {
+                log.warn("Campo '{}' non trovato in Entity {}", fieldName, entity.getClass().getSimpleName());
+            }
+        });
+        Entity updated = jpaRepository.save(entity);
+        return converter.toDTO(updated);
     }
 }
 

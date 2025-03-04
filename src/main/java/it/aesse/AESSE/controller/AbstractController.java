@@ -3,17 +3,13 @@ package it.aesse.AESSE.controller;
 import it.aesse.AESSE.service.ServiceDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.Map;
 
 
-@Controller
+@RestController
 public abstract class AbstractController <DTO> {
 
     @Autowired
@@ -49,4 +45,9 @@ public abstract class AbstractController <DTO> {
         return serviceDTO.readAll();
     }
 
+    @PatchMapping("/patch")
+    public DTO patch(@RequestParam("id") Long id,
+                     @RequestBody Map<String, Object> changes) {
+        return (DTO) ((it.aesse.AESSE.service.AbstractService) serviceDTO).patch(id, changes);
+    }
 }
