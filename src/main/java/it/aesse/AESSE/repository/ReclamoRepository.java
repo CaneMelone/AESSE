@@ -6,7 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ReclamoRepository extends JpaRepository<Reclamo,Long> {
-    Iterable<Reclamo> findByCustomerId(Long customerId);
 
-    Iterable<Reclamo> findByStatus(String status);
 }

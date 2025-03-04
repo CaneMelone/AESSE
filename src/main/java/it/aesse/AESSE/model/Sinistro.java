@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Sinistro")
+@Table(name = "sinistro")
 public class Sinistro {
 
     @Id
@@ -21,7 +21,7 @@ public class Sinistro {
     private Long id_sinistro;
 
     @Column(name = "id_polizza")
-    private Polizza polizza;
+    private Long idPolizza;
 
     @Column(name = "data")
     private LocalDate data;
@@ -33,7 +33,7 @@ public class Sinistro {
     private String stato;
 
     @Column(name = "valore_danno", precision = 10, scale = 2)
-    private BigDecimal valore_danno;
+    private BigDecimal valoreDanno;
 
     @Column(name = "importo_concesso", precision = 10, scale = 2)
     private BigDecimal importoConcesso;

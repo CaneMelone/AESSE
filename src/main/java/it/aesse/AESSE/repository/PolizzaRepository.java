@@ -8,5 +8,4 @@ import java.util.List;
 
 @Repository
 public interface PolizzaRepository extends JpaRepository<Polizza,Long> {
-    List<Polizza> findByIdCliente(Long idCliente);
 }

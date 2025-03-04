@@ -1,6 +1,7 @@
 package it.aesse.AESSE.service;
 
                  import it.aesse.AESSE.converter.Converter;
+                 import it.aesse.AESSE.converter.ReclamoConverter;
                  import it.aesse.AESSE.dto.ReclamoDto;
                  import it.aesse.AESSE.model.Reclamo;
                  import it.aesse.AESSE.repository.ReclamoRepository;
@@ -19,10 +20,10 @@ package it.aesse.AESSE.service;
                      private ReclamoRepository reclamoRepository;
 
                      @Autowired
-                     private Converter<Reclamo, ReclamoDto> converter;
+                     private ReclamoConverter reclamoConverter;
 
 
-                     // Metodo per recuperare i reclami in base allo stato
+                     /*// Metodo per recuperare i reclami in base allo stato
                      public List<ReclamoDto> findByStatus(String status) {
                          log.info("Recupero dei reclami con stato: {}", status);
                          return converter.toDTOList(reclamoRepository.findByStatus(status));
@@ -32,5 +33,5 @@ package it.aesse.AESSE.service;
                      public List<ReclamoDto> findByCustomerId(Long customerId) {
                          log.info("Recupero dei reclami per il cliente con ID: {}", customerId);
                          return converter.toDTOList(reclamoRepository.findByCustomerId(customerId));
-                     }
+                     }*/
                  }

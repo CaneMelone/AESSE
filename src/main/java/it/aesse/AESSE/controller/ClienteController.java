@@ -19,7 +19,7 @@ public class ClienteController extends AbstractController<ClienteDto>{
     @Autowired
     private ClienteService clienteService;
 
-    @GetMapping("/contattocliente")
+    /*@GetMapping("/contattocliente")
     public List<Map<String, String>> getInformazioniDiContatto() {
         return clienteService.getInformazioniDiContatto();
     }
@@ -27,5 +27,5 @@ public class ClienteController extends AbstractController<ClienteDto>{
     @GetMapping("/isclienteconpolizza")
     public boolean hasPolizzeAttve(Long idCliente) {
         return clienteService.hasPolizzeAttve(idCliente);
-    }
+    }*/
 }
