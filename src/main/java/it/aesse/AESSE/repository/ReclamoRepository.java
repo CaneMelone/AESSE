@@ -13,7 +13,7 @@ package it.aesse.AESSE.repository;
             @Repository
             public interface ReclamoRepository extends JpaRepository<Reclamo, Long> {
 
-                List<Reclamo> findByDate(String date);
+                List<Reclamo> findByData(LocalDate date);
 
                 List<Reclamo> findByMotivo(String motivo);
 

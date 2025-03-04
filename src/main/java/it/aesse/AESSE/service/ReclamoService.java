@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Slf4j
@@ -30,9 +31,9 @@ public class ReclamoService extends AbstractService<Reclamo, ReclamoDto> {
          * @param date la data per filtrare gli oggetti ReclamoDto
          * @return una lista di oggetti ReclamoDto che corrispondono alla data specificata
          */
-        public List<ReclamoDto> findByDate(String date) {
+        public List<ReclamoDto> findByDate(LocalDate date) {
             log.info("Recupero dei reclami con data: {}", date);
-            return converter.toDTOList(reclamoRepository.findByDate(date));
+            return converter.toDTOList(reclamoRepository.findByData(date));
         }
 
         /**

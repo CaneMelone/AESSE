@@ -1,5 +1,6 @@
 package it.aesse.AESSE.dto;
 
+import it.aesse.AESSE.sub.Stato;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -9,7 +10,7 @@ public class ReclamoDto {
     private Long id_reclamo;
     private LocalDate data;
     private String motivo;
-    private String stato;
+    private Enum <Stato> stato;
 
-    private Long id_polizza;
+    private PolizzaDto polizza;
 }
