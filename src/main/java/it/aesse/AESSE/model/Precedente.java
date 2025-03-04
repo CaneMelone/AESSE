@@ -27,6 +27,7 @@ public class Precedente {
     @Column(name = "scontata")
     private Boolean scontata;
 
+    @ManyToOne
     @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
     private Cliente cliente;
 }

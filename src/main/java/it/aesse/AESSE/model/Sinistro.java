@@ -35,6 +35,7 @@ public class Sinistro {
     @Column(name = "importo_concesso", precision = 10, scale = 2)
     private BigDecimal importoConcesso;
 
+    @ManyToOne
     @JoinColumn(name = "id_polizza", referencedColumnName = "id_polizza")
     private Polizza polizza;
 }

@@ -29,6 +29,7 @@ public class Reclamo {
     @Column(name = "stato")
     private String stato;
 
-    @Column(name = "id_polizza")
-    private Long id_polizza;
+    @ManyToOne
+    @JoinColumn(name = "id_polizza")
+    private Polizza polizza;
 }

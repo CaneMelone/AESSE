@@ -31,6 +31,7 @@ public class Pagamento {
     @Column(name = "causale", length = 100)
     private String causale;
 
+    @ManyToOne
     @JoinColumn(name = "id_polizza", referencedColumnName = "id_polizza")
     private Polizza polizza;
 }
