@@ -20,4 +20,5 @@ package it.aesse.AESSE.repository;
                 @Query("select r from Reclamo r where r.polizza.cliente.nome = ?1")
                 List<Reclamo> findByNome(String nome);
 
+                List<Reclamo> findByStato(String stato);
             }

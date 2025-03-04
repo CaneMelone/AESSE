@@ -56,4 +56,15 @@ public class ReclamoService extends AbstractService<Reclamo, ReclamoDto> {
             log.info("Recupero dei reclami con nome: {}", nome);
             return converter.toDTOList(reclamoRepository.findByNome(nome));
         }
+
+        /**
+         * Recupera una lista di oggetti ReclamoDto per lo stato specificato.
+         *
+         * @param stato lo stato per filtrare gli oggetti ReclamoDto
+         * @return una lista di oggetti ReclamoDto che corrispondono allo stato specificato
+         */
+        public List<ReclamoDto> findByStato(String stato) {
+            log.info("Recupero dei reclami con stato: {}", stato);
+            return converter.toDTOList(reclamoRepository.findByStato(stato));
+        }
 }
