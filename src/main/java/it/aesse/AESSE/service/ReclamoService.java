@@ -72,7 +72,7 @@ public class ReclamoService extends AbstractService<Reclamo, ReclamoDto> {
         }
 
 
-             /**
+/**
              * Recupera una lista di oggetti ReclamoDto per i criteri specificati.
              *
              * @param valore il valore per filtrare gli oggetti ReclamoDto
