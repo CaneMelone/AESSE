@@ -72,7 +72,13 @@ public class ReclamoService extends AbstractService<Reclamo, ReclamoDto> {
         }
 
 
-
+             /**
+             * Recupera una lista di oggetti ReclamoDto per i criteri specificati.
+             *
+             * @param valore il valore per filtrare gli oggetti ReclamoDto
+             * @param controllo il controllo per filtrare gli oggetti ReclamoDto
+             * @return una lista di oggetti ReclamoDto che corrispondono ai criteri specificati
+             */
             public List<ReclamoDto> findByCriteria(String valore, String controllo) {
                 log.info("Recupero dei reclami con criteri - Valore: {}, Controllo: {}", valore, controllo);
                 List<Reclamo> reclami;
