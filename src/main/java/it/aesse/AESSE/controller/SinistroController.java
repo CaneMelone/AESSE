@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Reclamo")
-@CrossOrigin(origins = "http//localhost:8080")
+@RequestMapping("/Sinistro")
+@CrossOrigin(origins = "http://localhost:8080")
 public class SinistroController extends AbstractController<SinistroDto> {
 
     @Autowired
