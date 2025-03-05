@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+
 @Service
 public interface ServiceDTO<DTO> {
 
@@ -18,4 +20,6 @@ public interface ServiceDTO<DTO> {
     public void delete(long id);
 
     public Collection<DTO> readAll();
+
+    DTO patch(Long id, Map<String, Object> changes);
 }
