@@ -21,15 +21,13 @@ public class PrecedenteService extends AbstractService<Precedente, PrecedenteDto
     @Autowired
     private PrecedenteConverter precedenteConverter;
 
-    /*// Metodo per recuperare i precedenti in base alla descrizione
-    public List<PrecedenteDto> findByDescription(String description) {
-        log.info("Recupero dei precedenti con descrizione: {}", description);
-        return converter.toDTOList(precedenteRepository.findByDescription(description));
+    //TODO un service che si chiama GetPrecedenti Si deve chiamare nel controller cosi
+    // GetPrecedenti Questo metodo in base al ID del cliente
+    // Mi va a richiamare il codice fiscale lindirizzo la pena e se e stata scontata
+
+    public List<PrecedenteDto> GetPrecedenti(Long idCliente) {
+        log.info("Recupero dei precedenti con idCliente: {}", idCliente);
+        return precedenteConverter.toDTOList(precedenteRepository.findByIdCliente(idCliente));
     }
 
-    // Metodo per recuperare i precedenti in base all'ID del caso
-    public List<PrecedenteDto> findByCaseId(Long caseId) {
-        log.info("Recupero dei precedenti per il caso con ID: {}", caseId);
-        return converter.toDTOList(precedenteRepository.findByCaseId(caseId));
-    }*/
 }
