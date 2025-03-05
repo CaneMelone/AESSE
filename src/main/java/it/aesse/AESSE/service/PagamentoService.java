@@ -3,12 +3,13 @@ package it.aesse.AESSE.service;
 import it.aesse.AESSE.dto.PagamentoDto;
 import it.aesse.AESSE.model.Pagamento;
 import it.aesse.AESSE.repository.PagamentoRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.math.BigDecimal;
 import java.util.List;
 
+@Slf4j
 @Service
 public class PagamentoService extends AbstractService<Pagamento, PagamentoDto> {
 

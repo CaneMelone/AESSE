@@ -48,6 +48,6 @@ public abstract class AbstractController <DTO> {
     @PatchMapping("/patch")
     public DTO patch(@RequestParam("id") Long id,
                      @RequestBody Map<String, Object> changes) {
-        return (DTO) ((it.aesse.AESSE.service.AbstractService) serviceDTO).patch(id, changes);
+        return serviceDTO.patch(id, changes);
     }
 }
