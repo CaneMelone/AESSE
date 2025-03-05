@@ -9,7 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Slf4j
@@ -68,4 +70,26 @@ public class ReclamoService extends AbstractService<Reclamo, ReclamoDto> {
             log.info("Recupero dei reclami con stato: {}", stato);
             return converter.toDTOList(reclamoRepository.findByStato(stato));
         }
+
+
+
+            public List<ReclamoDto> findByCriteria(String valore, String controllo) {
+                log.info("Recupero dei reclami con criteri - Valore: {}, Controllo: {}", valore, controllo);
+                List<Reclamo> reclami;
+
+                if (controllo.equals("nome")) {
+                    reclami = reclamoRepository.findByNome(valore);
+                } else if (controllo.equals("data")) {
+                    LocalDate date = LocalDate.parse(valore, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                    reclami = reclamoRepository.findByData(date);
+                } else if (controllo.equals("motivo")) {
+                    reclami = reclamoRepository.findByMotivo(valore);
+                } else if (controllo.equals("stato")) {
+                    reclami = reclamoRepository.findByStato(valore);
+                } else {
+                    reclami = reclamoRepository.findAll();
+                }
+
+                return converter.toDTOList(reclami);
+            }
 }
