@@ -3,11 +3,12 @@ package it.aesse.AESSE.service;
 import it.aesse.AESSE.dto.SinistroDto;
 import it.aesse.AESSE.model.Sinistro;
 import it.aesse.AESSE.repository.SinistroRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
+@Slf4j
 @Service
 public class SinistroService extends AbstractService<Sinistro, SinistroDto> {
 
@@ -23,8 +24,8 @@ public class SinistroService extends AbstractService<Sinistro, SinistroDto> {
         return converter.toDTOList(sinistroRepository.findByStato(stato));
     }
 
-    public List<SinistroDto> getSinistriByCliente(Long idCliente) {
-        List<Sinistro> sinistri = sinistroRepository.findByClienteId(idCliente);
+    public List<SinistroDto> getSinistriByCliente(Long clienteId) {
+        List<Sinistro> sinistri = sinistroRepository.findByClienteId(clienteId);
         return converter.toDTOList(sinistri);
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -90,16 +91,31 @@ public abstract class AbstractService<Entity, DTO> implements ServiceDTO<DTO> {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    @CacheEvict(value = "entities", key = "#id")
     public DTO patch(Long id, Map<String, Object> changes) {
         log.info("PATCH dell'elemento con ID: {}, changes: {}", id, changes);
         Entity entity = jpaRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Elemento con ID " + id + " non trovato"));
-
         changes.forEach((fieldName, fieldValue) -> {
             Field field = ReflectionUtils.findField(entity.getClass(), fieldName);
             if (field != null) {
                 field.setAccessible(true);
-                ReflectionUtils.setField(field, entity, fieldValue);
+                Object valueToSet = fieldValue;
+                // Se il campo è di tipo BigDecimal, convertilo se necessario
+                if (field.getType().equals(BigDecimal.class)) {
+                    if (fieldValue instanceof Number) {
+                        valueToSet = BigDecimal.valueOf(((Number) fieldValue).doubleValue());
+                    } else if (fieldValue instanceof String) {
+                        try {
+                            valueToSet = new BigDecimal((String) fieldValue);
+                        } catch (NumberFormatException e) {
+                            log.error("Impossibile convertire {} in BigDecimal per il campo {}", fieldValue, fieldName);
+                        }
+                    }
+                }
+                // Altri controlli possono essere aggiunti qui per altri tipi (es. LocalDate)
+                ReflectionUtils.setField(field, entity, valueToSet);
             } else {
                 log.warn("Campo '{}' non trovato in Entity {}", fieldName, entity.getClass().getSimpleName());
             }
