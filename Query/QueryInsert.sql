@@ -62,10 +62,10 @@ INSERT INTO Sinistro (id_sinistro, id_polizza, data, descrizione, stato, valore_
 
 -- Inserimento reclami (alcune polizze hanno reclamo)
 INSERT INTO Reclamo (id_reclamo, id_polizza, data, motivo, stato) VALUES
-(1, 1, '2023-02-05', 'Ritardo nella liquidazione', 'In corso'),
-(2, 3, '2022-07-15', 'Danno ingiustificato', 'Accettato'),
-(3, 5, '2023-05-10', 'Richiesta indennizzo non riconosciuta', 'Respinto'),
-(4, 7, '2023-06-20', 'Errore di valutazione', 'In corso');
+(1, 1, '2023-02-05', 'Ritardo nella liquidazione', 'Elaborazione'),
+(2, 3, '2022-07-15', 'Danno ingiustificato', 'Aperto'),
+(3, 5, '2023-05-10', 'Richiesta indennizzo non riconosciuta', 'Chiuso'),
+(4, 7, '2023-06-20', 'Errore di valutazione', 'Elaborazione');
 
 -- Inserimento precedenti (solo per alcuni clienti)
 INSERT INTO Precedente (id_precedente, id_cliente, tipo, pena, scontata) VALUES
