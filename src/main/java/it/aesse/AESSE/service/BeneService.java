@@ -21,4 +21,9 @@ public class BeneService extends AbstractService<Bene, BeneDto> {
     public List<PolizzaBene> findBeniByClienteId(Long clienteId) {
         return polizzaRepository.findByCliente_Id(clienteId);
     }
+
+    public int countPoliciesForBene(Long beneId) {
+        return polizzaRepository.countByBeneId(beneId);
+    }
+
 }

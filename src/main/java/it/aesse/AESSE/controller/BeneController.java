@@ -19,4 +19,9 @@ package it.aesse.AESSE.controller;
         public List<PolizzaBene> findBeniByClienteId(@RequestParam("clienteId") Long clienteId) {
             return beneService.findBeniByClienteId(clienteId);
         }
+
+        @GetMapping("/countpolizze")
+        public int countPoliciesForBene(@RequestParam("beneId") Long beneId) {
+            return beneService.countPoliciesForBene(beneId);
+        }
     }
