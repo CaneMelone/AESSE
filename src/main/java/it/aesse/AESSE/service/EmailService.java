@@ -1,4 +1,4 @@
-package it.aesse.AESSE.service;
+/*package it.aesse.AESSE.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
@@ -23,3 +23,4 @@ public class EmailService {
         sendEmail(Destinatario, "Creazione Polizza", "Congratulazioni, la sua polizza è stata creata con successo");
     }
 }
+*/

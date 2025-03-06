@@ -18,4 +18,9 @@ public class PrecedenteController extends AbstractController<PrecedenteDto> {
     public Optional<PrecedenteDto> getPrecedentiEVerificaPena(@RequestParam Long clienteId) {
         return precedenteService.getPrecedentiEVerificaPena(clienteId);
     }
+    @GetMapping("/calcolaPremio")
+    public double calcolaPremioFinale(@RequestParam Long clienteId,
+                                      @RequestParam double premioIniziale) {
+        return precedenteService.calcolaPremioFinale(clienteId, premioIniziale);
+    }
 }
