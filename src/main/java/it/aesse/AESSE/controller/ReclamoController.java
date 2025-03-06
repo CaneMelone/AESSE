@@ -42,6 +42,11 @@ public class ReclamoController extends AbstractController<ReclamoDto> {
                                            @RequestParam("controllo") String controllo) {
         return reclamoService.findByCriteria(valore, controllo);
     }
+    @GetMapping("/changeStato")
+    public void changeStato(@RequestParam Long id,
+                            @RequestParam String stato) {
+        reclamoService.changeStato(id, stato);
+    }
 
 
 }

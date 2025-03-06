@@ -5,6 +5,7 @@ import it.aesse.AESSE.converter.ReclamoConverter;
 import it.aesse.AESSE.dto.ReclamoDto;
 import it.aesse.AESSE.model.Reclamo;
 import it.aesse.AESSE.repository.ReclamoRepository;
+import it.aesse.AESSE.sub.Stato;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -92,5 +93,20 @@ public class ReclamoService extends AbstractService<Reclamo, ReclamoDto> {
 
                 return converter.toDTOList(reclami);
             }
+//TODO la possibiita di cambiare lo stato al reclamo
 
-}
+            /**
+             * Cambia lo stato di un reclamo identificato dal suo ID.
+             *
+             * @param id l'ID del reclamo da aggiornare
+             * @param stato il nuovo stato da impostare per il reclamo
+             * @throws IllegalArgumentException se il reclamo con l'ID specificato non viene trovato
+             */
+            public void changeStato(Long id, String stato) {
+                log.info("Cambio dello stato del reclamo con ID: {} a: {}", id, stato);
+                Reclamo reclamo = reclamoRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Reclamo non trovato"));
+                reclamo.setStato(Stato.valueOf(stato));
+                reclamoRepository.save(reclamo);
+            }
+        }
+
