@@ -32,4 +32,13 @@ public class PagamentoService extends AbstractService<Pagamento, PagamentoDto> {
                 .map(Pagamento::getImporto)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
+
+    public BigDecimal getSommaPagamentiByPolizzaAndYear(Long polizzaId, int year) {
+        List<Pagamento> pagamenti = pagamentoRepository.findByPolizzaId(polizzaId); 
+        return pagamenti.stream()
+                .filter(p -> p.getData_pagamento() != null && p.getData_pagamento().getYear() == year)
+                .map(Pagamento::getImporto)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
 }

@@ -31,14 +31,46 @@ public abstract class AbstractService<Entity, DTO> implements ServiceDTO<DTO> {
     public AbstractService() {
     }
 
+//    @Override
+//    @CacheEvict(value = "entities", allEntries = true) // Invalida la cache dopo un inserimento
+//    public DTO insert(DTO dto) {
+//        log.info("Inserimento di un nuovo elemento: {}", dto);
+//        Entity entity = converter.toEntity(dto);
+//        Entity savedEntity = jpaRepository.save(entity);
+//        return converter.toDTO(savedEntity);
+//    }
+
+
     @Override
-    @CacheEvict(value = "entities", allEntries = true) // Invalida la cache dopo un inserimento
+    @CacheEvict(value = "entities", allEntries = true)
     public DTO insert(DTO dto) {
         log.info("Inserimento di un nuovo elemento: {}", dto);
         Entity entity = converter.toEntity(dto);
+
+        // Recupera il campo identificativo usando reflection:
+        Field idField = null;
+        for (Field field : entity.getClass().getDeclaredFields()) {
+            if (field.isAnnotationPresent(jakarta.persistence.Id.class)) {
+                idField = field;
+                break;
+            }
+        }
+
+        if (idField != null) {
+            idField.setAccessible(true);
+            Object idValue = ReflectionUtils.getField(idField, entity);
+            // Se il valore dell'ID non è nullo, significa che stai tentando di inserire un record con ID già esistente
+            if (idValue != null) {
+                throw new IllegalArgumentException("Impossibile eseguire l'insert: l'ID deve essere nullo per un nuovo record");
+            }
+        } else {
+            log.warn("Nessun campo @Id trovato nella classe: {}", entity.getClass().getSimpleName());
+        }
+
         Entity savedEntity = jpaRepository.save(entity);
         return converter.toDTO(savedEntity);
     }
+
 
     @Override
     @Cacheable("entities") // Caching della lista per ottimizzare performance
