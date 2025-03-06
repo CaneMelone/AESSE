@@ -2,12 +2,33 @@ package it.aesse.AESSE.service;
 
 import it.aesse.AESSE.dto.PolizzaDto;
 import it.aesse.AESSE.model.Polizza;
+import it.aesse.AESSE.repository.PolizzaRepository;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
+//todo creare una nuova tabella con il tipo di precedente
+
 @Service
 public class PolizzaService extends AbstractService<Polizza, PolizzaDto> {
+
+    @Autowired
+    private PolizzaRepository polizzaRepository;
+
+    @Transactional
+    public void aggiornaStatoPolizza(Long id_polizza, String stato) {
+        Polizza polizza = polizzaRepository.findById(id_polizza).get();
+           //     .orElseThrow(() -> new EntityNotFoundException("Polizza con ID " + id_polizza + " non trovata."));
+
+        polizza.setStato(stato); // Aggiorna lo stato della polizza
+        polizza.setData_inizio(LocalDate.now()); // Aggiorna la data di inizio con la data odierna
+        polizzaRepository.save(polizza); // Salva le modifiche nel database
+    }
     @Autowired
     private EmailService emailService;
 
@@ -20,5 +41,8 @@ public class PolizzaService extends AbstractService<Polizza, PolizzaDto> {
         emailService.sendEmailCreazionePolizza(savedEntity.getCliente().getEmail());
 
         return converter.toDTO(savedEntity);
+
+
     }
 }
+
