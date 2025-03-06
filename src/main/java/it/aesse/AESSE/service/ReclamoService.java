@@ -92,4 +92,5 @@ public class ReclamoService extends AbstractService<Reclamo, ReclamoDto> {
 
                 return converter.toDTOList(reclami);
             }
+
 }

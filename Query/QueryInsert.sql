@@ -68,10 +68,7 @@ INSERT INTO Reclamo (id_reclamo, id_polizza, data, motivo, stato) VALUES
 (4, 7, '2023-06-20', 'Errore di valutazione', 'Elaborazione');
 
 -- Inserimento precedenti (solo per alcuni clienti)
-INSERT INTO Precedente (id_precedente, id_cliente, tipo, pena, scontata) VALUES
-(1, 1, 'Violazione', 'Multe', false),
-(2, 4, 'Infrazione', 'Sospensione', true),
-(3, 9, 'Furto', 'Detenzione', false);
-
-
-select * from Polizza
+INSERT INTO Precedente (id_precedente, id_cliente, tipo, pena, scontata, percentuale, gravita) VALUES
+(1, 1, 'Violazione', 'Multe', false, 10.0, 'Minore'),
+(2, 4, 'Infrazione', 'Sospensione', true, 5.0, 'Moderata'),
+(3, 9, 'Furto', 'Detenzione', false, 20.0, 'Grave');
