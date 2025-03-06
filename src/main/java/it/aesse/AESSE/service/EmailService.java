@@ -19,7 +19,7 @@ public class EmailService {
         mailSender.send(message);
     }
 
-    public void sendEmailCreazionePolizza(String Destinatario){
+    public void sendEmailCreazionePolizza(String Destinatario) {
         sendEmail(Destinatario, "Creazione Polizza", "Congratulazioni, la sua polizza è stata creata con successo");
     }
 }
