@@ -15,8 +15,8 @@ public class PagamentoController extends AbstractController<PagamentoDto> {
     @Autowired
     private PagamentoService pagamentoService;
 
-    @GetMapping("/byPolizza/{polizzaId}")
-    public List<PagamentoDto> getPagamentiByPolizza(@PathVariable Long polizzaId) {
+    @GetMapping("/byPolizza")
+    public List<PagamentoDto> getPagamentiByPolizza(@RequestParam("id") Long polizzaId) {
         return pagamentoService.getPagamentiByPolizza(polizzaId);
     }
 
@@ -25,8 +25,14 @@ public class PagamentoController extends AbstractController<PagamentoDto> {
         return pagamentoService.getPagamentiByMetodo(metodo);
     }
 
-    @GetMapping("/somma/{polizzaId}")
-    public BigDecimal getSommaPagamentiPolizza(@PathVariable Long polizzaId) {
+    @GetMapping("/sommaPolizza")
+    public BigDecimal getSommaPagamentiPolizza(@RequestParam("id") Long polizzaId) {
         return pagamentoService.getSommaPagamentiPolizza(polizzaId);
+    }
+
+    @GetMapping("/sommaPerAnno")
+    public BigDecimal getSommaPagamentiByPolizzaAndYear(@RequestParam("id") Long polizzaId,
+                                                        @RequestParam("anno") int anno) {
+        return pagamentoService.getSommaPagamentiByPolizzaAndYear(polizzaId, anno);
     }
 }

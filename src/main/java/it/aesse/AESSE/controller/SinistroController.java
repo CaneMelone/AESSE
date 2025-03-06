@@ -4,6 +4,8 @@ import it.aesse.AESSE.dto.SinistroDto;
 import it.aesse.AESSE.service.SinistroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -14,8 +16,8 @@ public class SinistroController extends AbstractController<SinistroDto> {
     @Autowired
     private SinistroService sinistroService;
 
-    @GetMapping("/byPolizza/{polizzaId}")
-    public List<SinistroDto> getSinistriByPolizza(@PathVariable Long polizzaId) {
+    @GetMapping("/byPolizza")
+    public List<SinistroDto> getSinistriByPolizza(@RequestParam("id") Long polizzaId) {
         return sinistroService.getSinistriByPolizza(polizzaId);
     }
 
@@ -24,8 +26,18 @@ public class SinistroController extends AbstractController<SinistroDto> {
         return sinistroService.getSinistriByStato(stato);
     }
 
-    @GetMapping("/byCliente/{clienteId}")
-    public List<SinistroDto> getSinistriByCliente(@PathVariable Long clienteId) {
+    @GetMapping("/byCliente")
+    public List<SinistroDto> getSinistriByCliente(@RequestParam("id") Long clienteId) {
         return sinistroService.getSinistriByCliente(clienteId);
+    }
+
+    @GetMapping("/sommaDanni")
+    public BigDecimal getSommaDanniByPolizza(@RequestParam("id") Long clienteId) {
+        return sinistroService.getSommaDanniByPolizza(clienteId);
+    }
+
+    @GetMapping("/sommaConcessi")
+    public BigDecimal getSommaConcessiByPolizza(@RequestParam("id") Long clienteId) {
+        return sinistroService.getSommaConcessiByPolizza(clienteId);
     }
 }
