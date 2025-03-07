@@ -1,5 +1,6 @@
 package it.aesse.AESSE.service;
 
+import it.aesse.AESSE.converter.PolizzaConverter;
 import it.aesse.AESSE.dto.PolizzaDto;
 import it.aesse.AESSE.model.Polizza;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class PolizzaService extends AbstractService<Polizza, PolizzaDto> {
     @Autowired
     private PolizzaRepository polizzaRepository;
 
+    @Autowired
+    private PolizzaConverter polizzaConverter;
+
     @Transactional
     public void aggiornaStatoPolizza(Long id_polizza, String stato) {
         Polizza polizza = polizzaRepository.findById(id_polizza).get();
@@ -42,7 +46,7 @@ public class PolizzaService extends AbstractService<Polizza, PolizzaDto> {
         Polizza savedEntity = jpaRepository.save(entity);
         emailService.sendEmailCreazionePolizza(savedEntity.getCliente().getEmail());
 
-        return converter.toDTO(savedEntity);
+        return polizzaConverter.toDTO(savedEntity);
 
 
     }
