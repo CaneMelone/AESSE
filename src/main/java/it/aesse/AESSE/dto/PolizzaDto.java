@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 public class PolizzaDto {
-    private Long id;
+    private Long id_polizza;
     private LocalDate data_inizio;
     private LocalDate data_scadenza;
     private String tipo;

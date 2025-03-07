@@ -1,6 +1,5 @@
 package it.aesse.AESSE.model;
 
-import it.aesse.AESSE.sub.gravita_crimine;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,13 +26,6 @@ public class Precedente {
 
     @Column(name = "scontata")
     private Boolean scontata;
-
-    @Column(name = "percentuale")
-    private Double percentuale;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "gravita")
-    private gravita_crimine gravita;
 
     @ManyToOne
     @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")

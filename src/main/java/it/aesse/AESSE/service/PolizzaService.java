@@ -2,6 +2,8 @@ package it.aesse.AESSE.service;
 
 import it.aesse.AESSE.dto.PolizzaDto;
 import it.aesse.AESSE.model.Polizza;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import it.aesse.AESSE.repository.PolizzaRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
