@@ -5,9 +5,13 @@ import it.aesse.AESSE.model.Cliente;
 import it.aesse.AESSE.model.Polizza;
 import it.aesse.AESSE.repository.ClienteRepository;
 import it.aesse.AESSE.repository.PolizzaRepository;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -37,5 +41,50 @@ public class ClienteService extends AbstractService<Cliente, ClienteDto>{
                         "email", cliente.getEmail()
                 ))
                 .collect(Collectors.toList());
+    }
+
+    public byte[] generaExcelCliente(Cliente cliente) throws IOException {
+        Workbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet("Cliente");
+
+        // Intestazione colonne
+        Row headerRow = sheet.createRow(0);
+        String[] colonne = {"ID", "Nome", "Cognome", "Data di Nascita", "Indirizzo", "Telefono", "Email", "Codice Fiscale", "Bersani"};
+        for (int i = 0; i < colonne.length; i++) {
+            Cell cell = headerRow.createCell(i);
+            cell.setCellValue(colonne[i]);
+            cell.setCellStyle(createHeaderStyle(workbook));
+        }
+
+        // Dati cliente
+        Row row = sheet.createRow(1);
+        row.createCell(0).setCellValue(cliente.getId());
+        row.createCell(1).setCellValue(cliente.getNome());
+        row.createCell(2).setCellValue(cliente.getCognome());
+        row.createCell(3).setCellValue(cliente.getData_nascita().toString());
+        row.createCell(4).setCellValue(cliente.getIndirizzo());
+        row.createCell(5).setCellValue(cliente.getTelefono());
+        row.createCell(6).setCellValue(cliente.getEmail());
+        row.createCell(7).setCellValue(cliente.getCodice_fiscale());
+        row.createCell(8).setCellValue(cliente.getBersani() ? "Sì" : "No");
+
+        // Auto-resize colonne
+        for (int i = 0; i < colonne.length; i++) {
+            sheet.autoSizeColumn(i);
+        }
+
+        // Scrittura su byte array
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        workbook.write(outputStream);
+        workbook.close();
+        return outputStream.toByteArray();
+    }
+
+    private CellStyle createHeaderStyle(Workbook workbook) {
+        CellStyle style = workbook.createCellStyle();
+        Font font = workbook.createFont();
+        font.setBold(true);
+        style.setFont(font);
+        return style;
     }
 }
