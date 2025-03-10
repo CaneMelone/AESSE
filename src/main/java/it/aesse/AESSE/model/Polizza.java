@@ -45,4 +45,6 @@ public class Polizza {
     @ManyToOne
     @JoinColumn(name = "id_bene", referencedColumnName = "id_bene")
     private Bene bene;
-}
+
+
+    }

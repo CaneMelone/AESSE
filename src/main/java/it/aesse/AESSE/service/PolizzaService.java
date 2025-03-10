@@ -1,54 +1,51 @@
-package it.aesse.AESSE.service;
+// PolizzaService.java
+    package it.aesse.AESSE.service;
 
-import it.aesse.AESSE.converter.PolizzaConverter;
-import it.aesse.AESSE.dto.PolizzaDto;
-import it.aesse.AESSE.model.Polizza;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import it.aesse.AESSE.repository.PolizzaRepository;
-import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.stereotype.Service;
+    import it.aesse.AESSE.converter.PolizzaConverter;
+    import it.aesse.AESSE.dto.PolizzaDto;
+    import it.aesse.AESSE.model.Polizza;
+    import it.aesse.AESSE.repository.PolizzaRepository;
+    import it.aesse.AESSE.service.EmailService;
+    import jakarta.persistence.EntityNotFoundException;
+    import jakarta.transaction.Transactional;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.cache.annotation.CacheEvict;
+    import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+    import java.time.LocalDate;
 
-//todo creare una nuova tabella con il tipo di precedente
+    @Service
+    public class PolizzaService extends AbstractService<Polizza, PolizzaDto> {
 
-@Service
-public class PolizzaService extends AbstractService<Polizza, PolizzaDto> {
+        @Autowired
+        private PolizzaRepository polizzaRepository;
 
-    @Autowired
-    private PolizzaRepository polizzaRepository;
+        @Autowired
+        private PolizzaConverter polizzaConverter;
 
-    @Autowired
-    private PolizzaConverter polizzaConverter;
+        @Autowired
+        private EmailService emailService;
 
-    @Transactional
-    public void aggiornaStatoPolizza(Long id_polizza, String stato) {
-        Polizza polizza = polizzaRepository.findById(id_polizza).get();
-           //     .orElseThrow(() -> new EntityNotFoundException("Polizza con ID " + id_polizza + " non trovata."));
+        @Transactional
+        public void aggiornaStatoPolizza(Long id_polizza, String stato) {
+            Polizza polizza = polizzaRepository.findById(id_polizza)
+                .orElseThrow(() -> new EntityNotFoundException("Polizza con ID " + id_polizza + " non trovata."));
+            polizza.setStato(stato);
+            polizza.setData_inizio(LocalDate.now());
+            polizzaRepository.save(polizza);
+        }
 
-        polizza.setStato(stato); // Aggiorna lo stato della polizza
-        polizza.setData_inizio(LocalDate.now()); // Aggiorna la data di inizio con la data odierna
-        polizzaRepository.save(polizza); // Salva le modifiche nel database
+        @Override
+        @CacheEvict(value = "entities", allEntries = true)
+        public PolizzaDto insert(PolizzaDto dto) {
+            Polizza entity = polizzaConverter.toEntity(dto);
+            Polizza savedEntity = polizzaRepository.save(entity);
+            emailService.sendEmailCreazionePolizza(savedEntity.getCliente().getEmail());
+            return polizzaConverter.toDTO(savedEntity);
+        }
+
+        public Polizza findById(Long id) {
+            return polizzaRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Polizza con ID " + id + " non trovata."));
+        }
     }
-    @Autowired
-    private EmailService emailService;
-
-    @Override
-    @CacheEvict(value = "entities", allEntries = true) // Invalida la cache dopo un inserimento
-    public PolizzaDto insert(PolizzaDto dto) {
-
-        Polizza entity = converter.toEntity(dto);
-        Polizza savedEntity = jpaRepository.save(entity);
-        emailService.sendEmailCreazionePolizza(savedEntity.getCliente().getEmail());
-
-        return polizzaConverter.toDTO(savedEntity);
-
-
-    }
-}
-
