@@ -17,7 +17,7 @@ import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 
-public class ReclamoServiceTest {
+public class ReclamoTest {
     @Mock
     private ReclamoRepository reclamoRepository;
 
