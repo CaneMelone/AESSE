@@ -21,15 +21,15 @@
               @Autowired
               private PrecedenteConverter converter;
 
-              // Metodo per recuperare i precedenti in base alla descrizione
-              public List<PrecedenteDto> findByDescription(String description) {
-                  log.info("Recupero dei precedenti con descrizione: {}", description);
-                  return converter.toDTOList(precedenteRepository.findByDescription(description));
+              // Metodo per recuperare i precedenti in base al tipo
+              public List<PrecedenteDto> findByTipo(String tipo) {
+                  log.info("Recupero dei precedenti con tipo: {}", tipo);
+                  return converter.toDTOList(precedenteRepository.findByTipo(tipo));
               }
 
-              // Metodo per recuperare i precedenti in base all'ID del caso
-              public List<PrecedenteDto> findByCaseId(Long caseId) {
-                  log.info("Recupero dei precedenti per il caso con ID: {}", caseId);
-                  return converter.toDTOList(precedenteRepository.findByCaseId(caseId));
+              // Metodo per recuperare i precedenti in base all'ID del cliente
+              public List<PrecedenteDto> findByClienteId(Long clienteId) {
+                  log.info("Recupero dei precedenti per il cliente con ID: {}", clienteId);
+                  return converter.toDTOList(precedenteRepository.findByClienteId(clienteId));
               }
           }

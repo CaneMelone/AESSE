@@ -35,52 +35,52 @@ class PrecedenteTest {
         MockitoAnnotations.openMocks(this);
     }
     @Test
-    void findByDescription_returnsPrecedenteList() {
-        String description = "test description";
+    void findByTipo_returnsPrecedenteList() {
+        String tipo = "test tipo";
         Precedente precedente = new Precedente();
         PrecedenteDto precedenteDto = new PrecedenteDto();
 
-        when(precedenteRepository.findByDescription(description)).thenReturn(Collections.singletonList(precedente));
+        when(precedenteRepository.findByTipo(tipo)).thenReturn(Collections.singletonList(precedente));
         when(converter.toDTOList(Collections.singletonList(precedente))).thenReturn(Collections.singletonList(precedenteDto));
 
-        List<PrecedenteDto> result = precedenteService.findByDescription(description);
+        List<PrecedenteDto> result = precedenteService.findByTipo(tipo);
 
         assertEquals(1, result.size());
         assertEquals(precedenteDto, result.get(0));
     }
     @Test
-    void findByDescription_returnsEmptyListWhenNoPrecedenteFound() {
-        String description = "test description";
+    void findByTipo_returnsEmptyListWhenNoPrecedenteFound() {
+        String tipo = "test tipo";
 
-        when(precedenteRepository.findByDescription(description)).thenReturn(Collections.emptyList());
+        when(precedenteRepository.findByTipo(tipo)).thenReturn(Collections.emptyList());
         when(converter.toDTOList(Collections.emptyList())).thenReturn(Collections.emptyList());
 
-        List<PrecedenteDto> result = precedenteService.findByDescription(description);
+        List<PrecedenteDto> result = precedenteService.findByTipo(tipo);
 
         assertEquals(0, result.size());
     }
     @Test
-    void findByCaseId_returnsPrecedenteList() {
-        Long caseId = 1L;
+    void findByClienteId_returnsPrecedenteList() {
+        Long clienteId = 1L;
         Precedente precedente = new Precedente();
         PrecedenteDto precedenteDto = new PrecedenteDto();
 
-        when(precedenteRepository.findByCaseId(caseId)).thenReturn(Collections.singletonList(precedente));
+        when(precedenteRepository.findByClienteId(clienteId)).thenReturn(Collections.singletonList(precedente));
         when(converter.toDTOList(Collections.singletonList(precedente))).thenReturn(Collections.singletonList(precedenteDto));
 
-        List<PrecedenteDto> result = precedenteService.findByCaseId(caseId);
+        List<PrecedenteDto> result = precedenteService.findByClienteId(clienteId);
 
         assertEquals(1, result.size());
         assertEquals(precedenteDto, result.get(0));
     }
     @Test
-    void findByCaseId_returnsEmptyListWhenNoPrecedenteFound() {
-        Long caseId = 1L;
+    void findByClienteId_returnsEmptyListWhenNoPrecedenteFound() {
+        Long clienteId = 1L;
 
-        when(precedenteRepository.findByCaseId(caseId)).thenReturn(Collections.emptyList());
+        when(precedenteRepository.findByClienteId(clienteId)).thenReturn(Collections.emptyList());
         when(converter.toDTOList(Collections.emptyList())).thenReturn(Collections.emptyList());
 
-        List<PrecedenteDto> result = precedenteService.findByCaseId(caseId);
+        List<PrecedenteDto> result = precedenteService.findByClienteId(clienteId);
 
         assertEquals(0, result.size());
     }
