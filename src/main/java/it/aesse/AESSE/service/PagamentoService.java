@@ -1,5 +1,6 @@
 package it.aesse.AESSE.service;
 
+import it.aesse.AESSE.converter.PagamentoConverter;
 import it.aesse.AESSE.dto.PagamentoDto;
 import it.aesse.AESSE.model.Pagamento;
 import it.aesse.AESSE.model.Polizza;
@@ -23,6 +24,9 @@ public class PagamentoService extends AbstractService<Pagamento, PagamentoDto> {
 
     @Autowired
     private PagamentoRepository pagamentoRepository;
+
+    @Autowired
+    private PagamentoConverter converter;
 
     public List<PagamentoDto> getPagamentiByPolizza(Long polizzaId) {
         List<Pagamento> pagamenti = pagamentoRepository.findByPolizzaId(polizzaId);
