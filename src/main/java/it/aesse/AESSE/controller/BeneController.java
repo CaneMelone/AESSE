@@ -11,17 +11,22 @@ package it.aesse.AESSE.controller;
 @RestController
     @RequestMapping("/Bene")
     @CrossOrigin(origins = "http://localhost:8080")
-    public class BeneController extends AbstractController<BeneDto> {
+    public class BeneController extends AbstractController<BeneDto>
+{
         @Autowired
         private BeneService beneService;
 
+        //Metodo per trovare i beni di un cliente
         @GetMapping("/benidacliente")
-        public List<PolizzaBene> findBeniByClienteId(@RequestParam("clienteId") Long clienteId) {
+        public List<PolizzaBene> findBeniByClienteId(@RequestParam("clienteId") Long clienteId)
+        {
             return beneService.findBeniByClienteId(clienteId);
         }
 
+        //Metodo per contare le polizze di un bene
         @GetMapping("/countpolizze")
-        public int countPoliciesForBene(@RequestParam("beneId") Long beneId) {
+        public int countPoliciesForBene(@RequestParam("beneId") Long beneId)
+        {
             return beneService.countPoliciesForBene(beneId);
         }
-    }
+}

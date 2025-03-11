@@ -4,10 +4,14 @@ import it.aesse.AESSE.model.Precedente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
-public interface PrecedenteRepository extends JpaRepository<Precedente,Long> {
+public interface PrecedenteRepository extends JpaRepository<Precedente,Long>
+{
+    //query per la ricerca di un precedente in base al tipo
+    List<Precedente> findByTipo(String tipo);
 
-    Iterable<Precedente> findByTipo(String tipo);
-
-    Iterable<Precedente> findByClienteId(Long clienteId);
+    //query per la ricerca di un precedente in base all'ID del cliente
+    List<Precedente> findByClienteId(Long clienteId);
 }
