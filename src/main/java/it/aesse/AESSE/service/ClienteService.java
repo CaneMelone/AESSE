@@ -16,8 +16,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * Classe di servizio per la gestione delle entità Cliente.
+ */
 @Service
-public class ClienteService extends AbstractService<Cliente, ClienteDto>{
+public class ClienteService extends AbstractService<Cliente, ClienteDto> {
 
     @Autowired
     PolizzaRepository polizzaRepository;
@@ -25,11 +28,22 @@ public class ClienteService extends AbstractService<Cliente, ClienteDto>{
     @Autowired
     ClienteRepository clienteRepository;
 
+    /**
+     * Verifica se il cliente con l'ID specificato ha polizze attive.
+     *
+     * @param idCliente l'ID del cliente
+     * @return true se il cliente ha polizze attive, altrimenti false
+     */
     public boolean hasPolizzeAttive(Long idCliente) {
         List<Polizza> polizze = polizzaRepository.findByClienteId(idCliente);
         return polizze.stream().anyMatch(polizza -> "Attiva".equalsIgnoreCase(polizza.getStato()));
     }
 
+    /**
+     * Recupera le informazioni di contatto dei clienti con polizze attive.
+     *
+     * @return una lista di mappe contenenti le informazioni di contatto dei clienti
+     */
     public List<Map<String, String>> getInformazioniDiContatto() {
         List<Cliente> clienti = clienteRepository.findAll();
 
@@ -43,6 +57,13 @@ public class ClienteService extends AbstractService<Cliente, ClienteDto>{
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Genera un file Excel con le informazioni del cliente specificato.
+     *
+     * @param cliente il cliente di cui generare il file Excel
+     * @return un array di byte contenente il file Excel
+     * @throws IOException se si verifica un errore durante la generazione del file
+     */
     public byte[] generaExcelCliente(Cliente cliente) throws IOException {
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Cliente");
@@ -80,6 +101,12 @@ public class ClienteService extends AbstractService<Cliente, ClienteDto>{
         return outputStream.toByteArray();
     }
 
+    /**
+     * Crea uno stile per l'intestazione delle colonne del file Excel.
+     *
+     * @param workbook il workbook in cui creare lo stile
+     * @return lo stile creato
+     */
     private CellStyle createHeaderStyle(Workbook workbook) {
         CellStyle style = workbook.createCellStyle();
         Font font = workbook.createFont();
