@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Reclamo")
+@RequestMapping("Reclamo")
 @CrossOrigin(origins = "http://localhost:8080")
 public class ReclamoController extends AbstractController<ReclamoDto>
 {
@@ -41,7 +41,7 @@ public class ReclamoController extends AbstractController<ReclamoDto>
     }
 
     //metodo per recuperare i reclami in base a qualunque criterio
-    @GetMapping("/Getreport")
+    @GetMapping("/ByCriteria")
     public List<ReclamoDto> findByCriteria(@RequestParam("valore") String valore,
                                            @RequestParam("controllo") String controllo)
     {
@@ -55,4 +55,6 @@ public class ReclamoController extends AbstractController<ReclamoDto>
     {
         reclamoService.changeStato(id, stato);
     }
+
+
 }
