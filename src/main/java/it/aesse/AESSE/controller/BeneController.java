@@ -18,7 +18,7 @@ package it.aesse.AESSE.controller;
 
         //Metodo per trovare i beni di un cliente
         @GetMapping("/benidacliente")
-        public List<PolizzaBene> findBeniByClienteId(@RequestParam("clienteId") Long clienteId)
+        public List<BeneDto> findBeniByClienteId(@RequestParam("clienteId") Long clienteId)
         {
             return beneService.findBeniByClienteId(clienteId);
         }

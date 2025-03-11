@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import it.aesse.AESSE.repository.BeneRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /*
  * Classe di servizio per la gestione delle entità Bene.
@@ -28,9 +29,10 @@ public class BeneService extends AbstractService<Bene, BeneDto>
      * @param clienteId l'ID del cliente
      * @return una lista di PolizzaBene associati al cliente con l'ID specificato
      */
-    public List<PolizzaBene> findBeniByClienteId(Long clienteId)
+    public List<BeneDto> findBeniByClienteId(Long clienteId)
     {
-        return polizzaRepository.findByCliente_Id(clienteId);
+        return polizzaRepository.findByCliente_Id(clienteId).stream()
+                .map(x -> converter.toDTO(x.getBene())).collect(Collectors.toList());
     }
 
     /**
