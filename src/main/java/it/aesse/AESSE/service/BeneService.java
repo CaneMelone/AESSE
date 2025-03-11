@@ -2,7 +2,6 @@ package it.aesse.AESSE.service;
 
 import it.aesse.AESSE.dto.BeneDto;
 import it.aesse.AESSE.model.Bene;
-import it.aesse.AESSE.sub.PolizzaBene;
 import it.aesse.AESSE.repository.PolizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

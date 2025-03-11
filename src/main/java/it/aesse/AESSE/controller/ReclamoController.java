@@ -18,25 +18,29 @@ public class ReclamoController extends AbstractController<ReclamoDto>
 
     //metodo per recuperare i reclami in base alla data
     @GetMapping("/findByDate")
-    public List<ReclamoDto> findByDate(@RequestParam LocalDate date) {
+    public List<ReclamoDto> findByDate(@RequestParam LocalDate date)
+    {
         return reclamoService.findByDate(date);
     }
 
     //metodo per recuperare i reclami in base al motivo
     @GetMapping("/findByMotivo")
-    public List<ReclamoDto> findByMotivo(@RequestParam String motivo) {
+    public List<ReclamoDto> findByMotivo(@RequestParam String motivo)
+    {
         return reclamoService.findByMotivo(motivo);
     }
 
     //metodo per recuperare i reclami in base al nome
     @GetMapping("/findByNome")
-    public List<ReclamoDto> findByNome(@RequestParam String nome) {
+    public List<ReclamoDto> findByNome(@RequestParam String nome)
+    {
         return reclamoService.findByNome(nome);
     }
 
     //metodo per recuperare i reclami in base allo stato
     @GetMapping("/findByStato")
-    public List<ReclamoDto> findByStato(@RequestParam String stato) {
+    public List<ReclamoDto> findByStato(@RequestParam String stato)
+    {
         return reclamoService.findByStato(stato);
     }
 
@@ -55,6 +59,4 @@ public class ReclamoController extends AbstractController<ReclamoDto>
     {
         reclamoService.changeStato(id, stato);
     }
-
-
 }
