@@ -20,16 +20,15 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
-public abstract class AbstractService<Entity, DTO> implements ServiceDTO<DTO> {
-
+public abstract class AbstractService<Entity, DTO> implements ServiceDTO<DTO>
+{
     @Autowired
     protected JpaRepository<Entity, Long> jpaRepository;
 
     @Autowired
     protected Converter<Entity, DTO> converter;
 
-    public AbstractService() {
-    }
+    public AbstractService() {}
 
 //    @Override
 //    @CacheEvict(value = "entities", allEntries = true) // Invalida la cache dopo un inserimento
@@ -43,27 +42,33 @@ public abstract class AbstractService<Entity, DTO> implements ServiceDTO<DTO> {
 
     @Override
     @CacheEvict(value = "entities", allEntries = true)
-    public DTO insert(DTO dto) {
+    public DTO insert(DTO dto)
+    {
         log.info("Inserimento di un nuovo elemento: {}", dto);
         Entity entity = converter.toEntity(dto);
 
         // Recupera il campo identificativo usando reflection:
         Field idField = null;
-        for (Field field : entity.getClass().getDeclaredFields()) {
-            if (field.isAnnotationPresent(jakarta.persistence.Id.class)) {
+        for (Field field : entity.getClass().getDeclaredFields())
+        {
+            if (field.isAnnotationPresent(jakarta.persistence.Id.class))
+            {
                 idField = field;
                 break;
             }
         }
 
-        if (idField != null) {
+        if (idField != null)
+        {
             idField.setAccessible(true);
             Object idValue = ReflectionUtils.getField(idField, entity);
             // Se il valore dell'ID non è nullo, significa che stai tentando di inserire un record con ID già esistente
-            if (idValue != null) {
+            if (idValue != null)
+            {
                 throw new IllegalArgumentException("Impossibile eseguire l'insert: l'ID deve essere nullo per un nuovo record");
             }
-        } else {
+        } else
+        {
             log.warn("Nessun campo @Id trovato nella classe: {}", entity.getClass().getSimpleName());
         }
 
@@ -71,26 +76,27 @@ public abstract class AbstractService<Entity, DTO> implements ServiceDTO<DTO> {
         return converter.toDTO(savedEntity);
     }
 
-
     @Override
     @Cacheable("entities") // Caching della lista per ottimizzare performance
-    public List<DTO> getAll() {
+    public List<DTO> getAll()
+    {
         log.info("Recupero di tutti gli elementi");
         return converter.toDTOList((jpaRepository.findAll()));
     }
 
     @Override
     @Cacheable(value = "entities", key = "#id") // Cache singolo elemento
-    public DTO read(long id) {
+    public DTO read(long id)
+    {
         log.info("Recupero dell'elemento con ID: {}", id);
         Optional<Entity> entity = jpaRepository.findById(id);
-        return entity.map(converter::toDTO)
-                .orElseThrow(() -> new EntityNotFoundException("Elemento con ID " + id + " non trovato"));
+        return entity.map(converter::toDTO).orElseThrow(() -> new EntityNotFoundException("Elemento con ID " + id + " non trovato"));
     }
 
     @Override
     @CacheEvict(value = "entities", key = "#dto.id") // Invalida la cache dopo un update
-    public DTO update(DTO dto) {
+    public DTO update(DTO dto)
+    {
         log.info("Aggiornamento dell'elemento: {}", dto);
         Entity entity = converter.toEntity(dto);
         Entity updatedEntity = jpaRepository.save(entity);
@@ -99,9 +105,11 @@ public abstract class AbstractService<Entity, DTO> implements ServiceDTO<DTO> {
 
     @Override
     @CacheEvict(value = "entities", key = "#id") // Rimuove dalla cache l'elemento eliminato
-    public void delete(long id) {
+    public void delete(long id)
+    {
         log.warn("Eliminazione dell'elemento con ID: {}", id);
-        if (!jpaRepository.existsById(id)) {
+        if (!jpaRepository.existsById(id))
+        {
             throw new EntityNotFoundException("Elemento con ID " + id + " non esistente");
         }
         jpaRepository.deleteById(id);
@@ -109,13 +117,15 @@ public abstract class AbstractService<Entity, DTO> implements ServiceDTO<DTO> {
 
     @Override
     @Cacheable("entities") // Cache per ottenere tutti gli elementi
-    public List<DTO> readAll() {
+    public List<DTO> readAll()
+    {
         log.info("Lettura di tutti gli elementi");
         return converter.toDTOList((jpaRepository.findAll()));
     }
 
     // Nuovo metodo per paginazione
-    public List<DTO> getAllPaged(Pageable pageable) {
+    public List<DTO> getAllPaged(Pageable pageable)
+    {
         log.info("Recupero degli elementi con paginazione: Page {}, Size {}", pageable.getPageNumber(), pageable.getPageSize());
         return jpaRepository.findAll(pageable)
                 .stream()
@@ -125,30 +135,39 @@ public abstract class AbstractService<Entity, DTO> implements ServiceDTO<DTO> {
 
     @Override
     @CacheEvict(value = "entities", key = "#id")
-    public DTO patch(Long id, Map<String, Object> changes) {
+    public DTO patch(Long id, Map<String, Object> changes)
+    {
         log.info("PATCH dell'elemento con ID: {}, changes: {}", id, changes);
         Entity entity = jpaRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Elemento con ID " + id + " non trovato"));
-        changes.forEach((fieldName, fieldValue) -> {
+        changes.forEach((fieldName, fieldValue) ->
+        {
             Field field = ReflectionUtils.findField(entity.getClass(), fieldName);
-            if (field != null) {
+            if (field != null)
+            {
                 field.setAccessible(true);
                 Object valueToSet = fieldValue;
                 // Se il campo è di tipo BigDecimal, convertilo se necessario
-                if (field.getType().equals(BigDecimal.class)) {
-                    if (fieldValue instanceof Number) {
+                if (field.getType().equals(BigDecimal.class))
+                {
+                    if (fieldValue instanceof Number)
+                    {
                         valueToSet = BigDecimal.valueOf(((Number) fieldValue).doubleValue());
-                    } else if (fieldValue instanceof String) {
-                        try {
+                    } else if (fieldValue instanceof String)
+                    {
+                        try
+                        {
                             valueToSet = new BigDecimal((String) fieldValue);
-                        } catch (NumberFormatException e) {
+                        } catch (NumberFormatException e)
+                        {
                             log.error("Impossibile convertire {} in BigDecimal per il campo {}", fieldValue, fieldName);
                         }
                     }
                 }
                 // Altri controlli possono essere aggiunti qui per altri tipi (es. LocalDate)
                 ReflectionUtils.setField(field, entity, valueToSet);
-            } else {
+            } else
+            {
                 log.warn("Campo '{}' non trovato in Entity {}", fieldName, entity.getClass().getSimpleName());
             }
         });
@@ -156,6 +175,3 @@ public abstract class AbstractService<Entity, DTO> implements ServiceDTO<DTO> {
         return converter.toDTO(updated);
     }
 }
-
-
-

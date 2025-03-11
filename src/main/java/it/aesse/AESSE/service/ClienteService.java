@@ -20,8 +20,8 @@ import java.util.stream.Collectors;
  * Classe di servizio per la gestione delle entità Cliente.
  */
 @Service
-public class ClienteService extends AbstractService<Cliente, ClienteDto> {
-
+public class ClienteService extends AbstractService<Cliente, ClienteDto>
+{
     @Autowired
     PolizzaRepository polizzaRepository;
 
@@ -34,7 +34,8 @@ public class ClienteService extends AbstractService<Cliente, ClienteDto> {
      * @param idCliente l'ID del cliente
      * @return true se il cliente ha polizze attive, altrimenti false
      */
-    public boolean hasPolizzeAttive(Long idCliente) {
+    public boolean hasPolizzeAttive(Long idCliente)
+    {
         List<Polizza> polizze = polizzaRepository.findByClienteId(idCliente);
         return polizze.stream().anyMatch(polizza -> "Attiva".equalsIgnoreCase(polizza.getStato()));
     }
@@ -44,7 +45,8 @@ public class ClienteService extends AbstractService<Cliente, ClienteDto> {
      *
      * @return una lista di mappe contenenti le informazioni di contatto dei clienti
      */
-    public List<Map<String, String>> getInformazioniDiContatto() {
+    public List<Map<String, String>> getInformazioniDiContatto()
+    {
         List<Cliente> clienti = clienteRepository.findAll();
 
         return clienti.stream()
@@ -64,7 +66,8 @@ public class ClienteService extends AbstractService<Cliente, ClienteDto> {
      * @return un array di byte contenente il file Excel
      * @throws IOException se si verifica un errore durante la generazione del file
      */
-    public byte[] generaExcelCliente(Cliente cliente) throws IOException {
+    public byte[] generaExcelCliente(Cliente cliente) throws IOException
+    {
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Cliente");
 
@@ -90,7 +93,8 @@ public class ClienteService extends AbstractService<Cliente, ClienteDto> {
         row.createCell(8).setCellValue(cliente.getBersani() ? "Sì" : "No");
 
         // Auto-resize colonne
-        for (int i = 0; i < colonne.length; i++) {
+        for (int i = 0; i < colonne.length; i++)
+        {
             sheet.autoSizeColumn(i);
         }
 
@@ -107,7 +111,8 @@ public class ClienteService extends AbstractService<Cliente, ClienteDto> {
      * @param workbook il workbook in cui creare lo stile
      * @return lo stile creato
      */
-    private CellStyle createHeaderStyle(Workbook workbook) {
+    private CellStyle createHeaderStyle(Workbook workbook)
+    {
         CellStyle style = workbook.createCellStyle();
         Font font = workbook.createFont();
         font.setBold(true);

@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public interface ServiceDTO<DTO> {
+public interface ServiceDTO<DTO>
+{
 
     public List<DTO> getAll();
 

@@ -1,7 +1,8 @@
 package it.aesse.AESSE.sub;
 
 
-public enum Stato {
+public enum Stato
+{
     Elaborazione,
     Aperto,
     Chiuso
