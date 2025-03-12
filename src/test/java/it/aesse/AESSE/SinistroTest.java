@@ -21,8 +21,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-class SinistroTest {
-
+class SinistroTest
+{
     @Mock
     private SinistroRepository sinistroRepository;
 
@@ -38,7 +38,8 @@ class SinistroTest {
     }
 
     @Test
-    void getSinistriByPolizza_returnsSinistri() {
+    void getSinistriByPolizza_returnsSinistri()
+    {
         Long polizzaId = 1L;
         Sinistro sinistro = new Sinistro();
         SinistroDto sinistroDto = new SinistroDto();
@@ -51,7 +52,8 @@ class SinistroTest {
     }
 
     @Test
-    void getSinistriByPolizza_returnsEmptyListWhenNoSinistri() {
+    void getSinistriByPolizza_returnsEmptyListWhenNoSinistri()
+    {
         Long polizzaId = 1L;
         when(sinistroRepository.findByPolizzaId(polizzaId)).thenReturn(Collections.emptyList());
         when(sinistroConverter.toDTOList(Collections.emptyList())).thenReturn(Collections.emptyList());
@@ -62,7 +64,8 @@ class SinistroTest {
     }
 
     @Test
-    void getSommaDanniByPolizza_returnsSumOfDanni() {
+    void getSommaDanniByPolizza_returnsSumOfDanni()
+    {
         Long polizzaId = 1L;
         Sinistro sinistro1 = new Sinistro();
         sinistro1.setValoreDanno(BigDecimal.valueOf(100));
@@ -76,7 +79,8 @@ class SinistroTest {
     }
 
     @Test
-    void getSommaDanniByPolizza_returnsZeroWhenNoDanni() {
+    void getSommaDanniByPolizza_returnsZeroWhenNoDanni()
+    {
         Long polizzaId = 1L;
         when(sinistroRepository.findByPolizzaId(polizzaId)).thenReturn(Collections.emptyList());
 
@@ -86,7 +90,8 @@ class SinistroTest {
     }
 
     @Test
-    void getClientFullNameForPolizza_returnsFullName() {
+    void getClientFullNameForPolizza_returnsFullName()
+    {
         Long polizzaId = 1L;
         Sinistro sinistro = new Sinistro();
         Polizza polizza = new Polizza();
@@ -103,7 +108,8 @@ class SinistroTest {
     }
 
     @Test
-    void getClientFullNameForPolizza_returnsUnknownWhenNoClient() {
+    void getClientFullNameForPolizza_returnsUnknownWhenNoClient()
+    {
         Long polizzaId = 1L;
         when(sinistroRepository.findByPolizzaId(polizzaId)).thenReturn(Collections.emptyList());
 

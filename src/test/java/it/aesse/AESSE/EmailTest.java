@@ -1,5 +1,6 @@
-package it.aesse.AESSE.service;
+package it.aesse.AESSE;
 
+import it.aesse.AESSE.service.EmailService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -11,7 +12,7 @@ import org.springframework.mail.SimpleMailMessage;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class EmailServiceTest {
+public class EmailTest {
 
     @Mock
     private JavaMailSender mailSender;

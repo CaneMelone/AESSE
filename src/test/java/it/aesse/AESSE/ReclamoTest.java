@@ -17,7 +17,8 @@ import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 
-public class ReclamoTest {
+public class ReclamoTest
+{
     @Mock
     private ReclamoRepository reclamoRepository;
 
@@ -33,7 +34,8 @@ public class ReclamoTest {
     }
 
     @Test
-    void findByCriteria_withNome_returnsReclamoDtoList() {
+    void findByCriteria_withNome_returnsReclamoDtoList()
+    {
         Reclamo reclamo = new Reclamo();
         ReclamoDto reclamoDto = new ReclamoDto();
         when(reclamoRepository.findByNome("Mario")).thenReturn(Collections.singletonList(reclamo));
@@ -47,7 +49,8 @@ public class ReclamoTest {
     }
 
     @Test
-    void findByCriteria_withData_returnsReclamoDtoList() {
+    void findByCriteria_withData_returnsReclamoDtoList()
+    {
         LocalDate date = LocalDate.of(2023, 10, 1);
         Reclamo reclamo = new Reclamo();
         ReclamoDto reclamoDto = new ReclamoDto();
@@ -62,7 +65,8 @@ public class ReclamoTest {
     }
 
     @Test
-    void findByCriteria_withMotivo_returnsReclamoDtoList() {
+    void findByCriteria_withMotivo_returnsReclamoDtoList()
+    {
         Reclamo reclamo = new Reclamo();
         ReclamoDto reclamoDto = new ReclamoDto();
         when(reclamoRepository.findByMotivo("Complaint")).thenReturn(Collections.singletonList(reclamo));
@@ -76,7 +80,8 @@ public class ReclamoTest {
     }
 
     @Test
-    void findByCriteria_withStato_returnsReclamoDtoList() {
+    void findByCriteria_withStato_returnsReclamoDtoList()
+    {
         Reclamo reclamo = new Reclamo();
         ReclamoDto reclamoDto = new ReclamoDto();
         when(reclamoRepository.findByStato("Open")).thenReturn(Collections.singletonList(reclamo));
@@ -90,7 +95,8 @@ public class ReclamoTest {
     }
 
     @Test
-    void findByCriteria_withInvalidControllo_returnsAllReclamoDtoList() {
+    void findByCriteria_withInvalidControllo_returnsAllReclamoDtoList()
+    {
         Reclamo reclamo = new Reclamo();
         ReclamoDto reclamoDto = new ReclamoDto();
         when(reclamoRepository.findAll()).thenReturn(Collections.singletonList(reclamo));

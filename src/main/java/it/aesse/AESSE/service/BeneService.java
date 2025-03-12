@@ -5,7 +5,6 @@ import it.aesse.AESSE.model.Bene;
 import it.aesse.AESSE.repository.PolizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import it.aesse.AESSE.repository.BeneRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,9 +15,6 @@ import java.util.stream.Collectors;
 @Service
 public class BeneService extends AbstractService<Bene, BeneDto>
 {
-    @Autowired
-    private BeneRepository repository;
-
     @Autowired
     private PolizzaRepository polizzaRepository;
 
